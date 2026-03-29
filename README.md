@@ -1,4 +1,4 @@
-# Who Are You?
+# Who Am I?
 
 A psychological sci-fi horror story set on Mt. Shirouma in Japan — the second read changes everything.
 
