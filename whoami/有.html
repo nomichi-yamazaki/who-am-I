@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>自主選択：予備知識あり</title>
+
+<style>
+body {
+  min/height:100vh; 
+  margin-top:50px;
+  background-image:url("page.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-attachment: fixed;
+}
+
+/* 本文全体 */
+#novel {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: "游明朝", "ヒラギノ明朝 ProN", "MS 明朝", serif;
+  font-size: 24px;
+  line-height: 2.0;
+  color: #000000;
+}
+
+/* 段落 */
+#novel p {
+  text-indent: 1em;   /* 字下げ */
+  margin-bottom: 1.5em;
+}
+
+/* メニュー画像中央 */
+.menu {
+  text-align:center;
+}
+
+.menu img {
+  max-width:100%;
+  height:auto;
+  opacity:0.5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 上メニュー -->
+<div class="menu">
+  <img src="702.jpg" usemap="#page" id="menuimg">
+</div>
+
+<map name="page">
+  <area shape="rect" coords="0,0,260,180" href="./選択.html">
+  <area shape="rect" coords="521,0,720,180" href="contents.html">
+</map>
+
+<h2 style="text-align:center;">自主選択：予備知識あり</h2>
+
+
+<!-- 本文 -->
+<div id="novel" style="padding-left:40px; padding-right:40px;"> 
+ <p>
+
+
+
+
+<!-- 本文 -->
+<div id="novel" style="padding-left:40px; padding-right:40px;"> 
+ <p>
+どれかを選んでクリックしてください。
+<ul>
+<l1><a href="電話.html">１．電話：正統派ホラーエンド</a><br>
+<l1><a href="帰還.html">２．帰還：正統派ホラーエンド</a><br>
+<l1><a href="潜伏.html">３．潜伏：１．帰還を含んでいます。ひねった終わり方</a><br>
+<l1><a href="覚醒.html">４．覚醒：１．帰還を含んでいます。ひねった終わり方</a><br>
+<l1><a href="値段.html">５．何かの値段：ぶっ飛んだ終わり方</a><br>
+<l1><a href="山頂.html">６．山頂：回想として２．帰還、３．潜伏、４．覚醒、５．ナニカの値段を含んでいます。・ぶっ飛んだ終わり方</a><br>
+</ul>
+
+
+
+
+
+
+
+  </p>
+</div>
+
+<!-- 下メニュー -->
+<div class="menu">
+  <img src="702.jpg" usemap="#page_bottom" id="menuimg_bottom">
+</div>
+
+<map name="page_bottom">
+  <area shape="rect" coords="0,0,260,180" href="選択.html">
+  <area shape="rect" coords="521,0,720,180" href="contents.html">
+</map>
+
+<script>
+function setupResize(imgId, mapName) {
+  const img = document.getElementById(imgId);
+
+  function resizeMap() {
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    const cw = img.clientWidth;
+    const ch = img.clientHeight;
+
+    const sx = cw / w;
+    const sy = ch / h;
+
+    const areas = document.querySelectorAll("map[name='" + mapName + "'] area");
+
+    areas.forEach(area => {
+      if (!area.dataset.base) {
+        area.dataset.base = area.coords;
+      }
+      const coords = area.dataset.base.split(",").map(Number);
+      const newCoords = coords.map((c, i) =>
+        Math.round(c * (i % 2 === 0 ? sx : sy))
+      );
+      area.coords = newCoords.join(",");
+    });
+  }
+
+  img.addEventListener("load", resizeMap);
+  window.addEventListener("resize", resizeMap);
+}
+
+setupResize("menuimg", "page");
+setupResize("menuimg_bottom", "page_bottom");
+</script>
+
+</body>
+</html>

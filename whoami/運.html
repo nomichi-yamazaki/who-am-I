@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>運を天に任せる</title>
+
+<style>
+body {
+  min/height:100vh; 
+  margin-top:50px;
+  background-image:url("page.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-attachment: fixed;
+}
+
+/* 本文全体 */
+#novel {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: "游明朝", "ヒラギノ明朝 ProN", "MS 明朝", serif;
+  font-size: 24px;
+  line-height: 2.0;
+  color: #000000;
+}
+
+/* 段落 */
+#novel p {
+  text-indent: 1em;   /* 字下げ */
+  margin-bottom: 1.5em;
+}
+
+/* メニュー画像中央 */
+.menu {
+  text-align:center;
+}
+
+.menu img {
+  max-width:100%;
+  height:auto;
+  opacity:0.5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 上メニュー -->
+<div class="menu">
+  <img src="702.jpg" usemap="#page" id="menuimg">
+</div>
+
+<map name="page">
+  <area shape="rect" coords="0,0,260,180" href="./選択.html">
+  <area shape="rect" coords="521,0,720,180" href="contents.html">
+</map>
+
+<h2 style="text-align:center;">運を天に任せる</h2>
+
+
+<!-- 本文 -->
+<div id="novel" style="padding-left:40px; padding-right:40px;"> 
+ <p>
+
+Ⅰ～Ⅵのどれかを選んでください。結果をクリックするとそのエピソードに飛びます。<br>
+あみだの使い方。<br>
+選択したラインを上から下に進む。<br>
+分岐は必ず曲がる。<br>
+合流は必ず下に向かう。<br>
+アルファベットは同じ記号の場所にジャンプする。<br>
+半円や四角で分岐が交わしてある場所は上から来た場合、その分岐を交わして下に進み分岐から来た場合、来た方向に戻る。<br>
+
+<IMG SRC="./あみだ.jpg" USEMAP="#あみだ" ID="COVER" STYLE="MAX-WIDTH:100%; HEIGHT:AUTO;">
+<MAP NAME="あみだ">
+<area shape=rect" coords=100,700,150,750 href="./電話.html">
+<area shape=rect" coords=200,700,250,750 href="./帰還.html">
+<area shape=rect" coords=280,700,330,750 href="./潜伏.html">
+<area shape=rect" coords=400,700,440,750 href="./覚醒.html">
+<area shape=rect" coords=500,700,540,750 href="./値段.html">
+<area shape=rect" coords=600,700,650,750 href="./山頂.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </p>
+</div>
+
+<!-- 下メニュー -->
+<div class="menu">
+  <img src="702.jpg" usemap="#page_bottom" id="menuimg_bottom">
+</div>
+
+<map name="page_bottom">
+  <area shape="rect" coords="0,0,260,180" href="選択.html">
+  <area shape="rect" coords="521,0,720,180" href="contents.html">
+</map>
+
+<script>
+function setupResize(imgId, mapName) {
+  const img = document.getElementById(imgId);
+
+  function resizeMap() {
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    const cw = img.clientWidth;
+    const ch = img.clientHeight;
+
+    const sx = cw / w;
+    const sy = ch / h;
+
+    const areas = document.querySelectorAll("map[name='" + mapName + "'] area");
+
+    areas.forEach(area => {
+      if (!area.dataset.base) {
+        area.dataset.base = area.coords;
+      }
+      const coords = area.dataset.base.split(",").map(Number);
+      const newCoords = coords.map((c, i) =>
+        Math.round(c * (i % 2 === 0 ? sx : sy))
+      );
+      area.coords = newCoords.join(",");
+    });
+  }
+
+  img.addEventListener("load", resizeMap);
+  window.addEventListener("resize", resizeMap);
+}
+
+setupResize("menuimg", "page");
+setupResize("menuimg_bottom", "page_bottom");
+</script>
+
+</body>
+</html>
