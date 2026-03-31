@@ -69,5 +69,5 @@ Enjoy the story.
 
 For the best reading experience, you can read the story here:
 
-👉 https://nomichi-yamazaki.github/who-am-I/
+👉 https://nomichi-yamazaki.github.io/who-am-I/
 nomichi
